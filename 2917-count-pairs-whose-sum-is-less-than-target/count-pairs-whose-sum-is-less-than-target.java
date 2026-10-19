@@ -1,16 +1,19 @@
 class Solution {
     public int countPairs(List<Integer> nums, int target) 
     {
-        // int i=0,j=nums.size()-1;
+        int i=0,j=nums.size()-1;
         int pairCount=0;
-        for(int i=0;i<nums.size();i++)
+        Collections.sort(nums);
+        while(i<=j)
         {
-            for(int j=i+1;j<nums.size();j++)
+            if((nums.get(i)+nums.get(j))<target)
             {
-                if(nums.get(i)+nums.get(j)<target)
-                {
-                    pairCount++;
-                }
+                pairCount+=j-i;
+                i++;
+            }
+            else if((nums.get(i)+nums.get(j))>=target)
+            {
+                j--;
             }
         }
         return pairCount;
